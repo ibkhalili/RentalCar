@@ -1,11 +1,9 @@
-
-import React, { useRef } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
-import { ScaleLoader } from "react-spinners";
-import FormElement from "../components/Form/FormElement";
-import { registerUser } from "../redux/User/userRegisterActions";
+import React, { useRef } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { ScaleLoader } from 'react-spinners';
+import FormElement from '../components/Form/FormElement';
+import { registerUser } from '../redux/User/userRegisterActions';
 
 function SignupContainer({ userData, signupUser }) {
   const username = useRef();
@@ -23,7 +21,7 @@ function SignupContainer({ userData, signupUser }) {
     signupUser(data);
   };
 
-  let error = "";
+  let error = '';
   if (userData.error) {
     error = userData.error;
   }
@@ -42,7 +40,7 @@ function SignupContainer({ userData, signupUser }) {
         handleSubmit={handleRegistration}
       />
     </div>
-  )  
+  );
 }
 
 const mapStateToProps = (state) => ({
