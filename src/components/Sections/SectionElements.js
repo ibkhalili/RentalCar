@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md';
-import { Link as LinkRouter } from "react-router-dom";
+import styled from 'styled-components';
+import { MdArrowForward, MdKeyboardArrowRight } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 export const SectionsContainer = styled.div`
   background: #0c0c0c;
@@ -66,7 +66,7 @@ export const Prg1 = styled.div`
     font-size: 18px;
   }
 `;
-export const PrgBtnWrapper = styled(LinkRouter)`
+export const PrgBtnWrapper = styled(Link)`
   display: flex;
   margin-top: 32px;
   flex-direction: column;

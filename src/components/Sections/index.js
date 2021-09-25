@@ -15,7 +15,7 @@ import Video from 'video.mp4';
 
 function Sections() {
   const [hover, setHover] = useState(false);
-  const Onhover = () => {
+  const onHover = () => {
     setHover(!hover);
   };
 
@@ -32,10 +32,13 @@ function Sections() {
           total employees across all of its locations and generates $41,016 in
           sales (USD). (Employees figure is modelled).
         </Prg1>
-        <PrgBtnWrapper>
-          <Button to="signup" onMouseEnter={Onhover} onMouseleave={Onhover}>
-            Commencer {hover ? <ArrowForward /> : <ArrowRight />}
-          </Button>
+        <PrgBtnWrapper
+          to="/signup"
+          as={Button}
+          onMouseEnter={onHover}
+          onMouseLeave={onHover}
+        >
+          Commencer {hover ? <ArrowForward /> : <ArrowRight />}
         </PrgBtnWrapper>
       </SectionContent>
     </SectionsContainer>

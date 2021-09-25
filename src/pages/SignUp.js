@@ -4,7 +4,7 @@ import SignupContainer from '../Container/SignupContainer';
 
 function Signup() {
   return (
-    <Container classeName="log-box">
+    <Container className="log-box">
       <SignupContainer />
     </Container>
   );

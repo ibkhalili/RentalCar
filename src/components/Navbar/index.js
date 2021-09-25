@@ -29,7 +29,7 @@ const Navbar = ({ toggle }) => {
           <MobileIcon onClick={toggle}>
             <FaBars />
           </MobileIcon>
-          <NavMenu classeName="navbar-nav mr-auto">
+          <NavMenu className="navbar-nav mr-auto">
             <NavItems>
               <NavLinks to="about">About</NavLinks>
             </NavItems>

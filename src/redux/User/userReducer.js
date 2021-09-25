@@ -9,7 +9,7 @@ import { APP_LOGIN_TOKEN, APP_LOGIN_USER } from 'common/utils/constants';
 
 const initialState = {
   loading: false,
-  loggedIn: localStorage?.getItem(APP_LOGIN_TOKEN) !== '',
+  loggedIn: localStorage.getItem(APP_LOGIN_TOKEN) !== null,
   user: '',
   token: localStorage.getItem(APP_LOGIN_TOKEN),
   username: localStorage.getItem(APP_LOGIN_USER) || '',
@@ -25,6 +25,7 @@ const userReducer = (state = initialState, action) => {
         loggedIn: false,
         token: '',
         username: '',
+        redirectTo: '',
       };
     case LOGIN_REQUEST:
       return {

@@ -20,12 +20,12 @@ function Footer() {
         <MDBRow>
           <MDBCol>
             <h5 className="title">About Us</h5>
-            <h9>
+            <h6>
               TAZOTA CAR is located in EL JADIDA, Morocco and is part of the
               Automotive Equipment Rental and Leasing Industry. TAZOTA CAR has
               10 total employees across all of its locations and generates
               $41,016 in sales (USD). (Employees figure is modelled).
-            </h9>
+            </h6>
             <div className="social-container my-4 w-3">
               <a
                 href="https://www.youtube.com"
