@@ -5,7 +5,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT_REQUEST,
-} from 'redux/User/userTypesActions';
+} from 'redux/User/constants';
 import { APP_LOGIN_TOKEN, APP_LOGIN_USER } from 'common/utils/constants';
 
 export const userLoginRequest = () => ({

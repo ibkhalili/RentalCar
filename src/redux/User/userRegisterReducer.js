@@ -2,7 +2,7 @@ import {
   REGISTER_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
-} from './userTypesActions';
+} from 'redux/User/constants';
 import { APP_LOGIN_TOKEN, APP_LOGIN_USER } from 'common/utils/constants';
 
 const initialState = {

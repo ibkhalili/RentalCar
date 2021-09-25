@@ -4,7 +4,7 @@ import {
   LOGIN_FAILURE,
   LOGIN_REDIRECT,
   LOGOUT_REQUEST,
-} from './userTypesActions';
+} from 'redux/User/constants';
 import { APP_LOGIN_TOKEN, APP_LOGIN_USER } from 'common/utils/constants';
 
 const initialState = {

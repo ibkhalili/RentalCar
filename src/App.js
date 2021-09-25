@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import Footer from 'components/Footer/Footer';
 import Sidebar from './components/Sidebar';
 import { Logout } from 'pages/Logout';
+import { Users } from 'pages/Users';
 
 //import Footer from 'components/Footer/socialIcons';
 
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/services" component={Cars} />
+          <Route exact path="/users" component={Users} />
         </Switch>
         <Footer />
       </Router>
