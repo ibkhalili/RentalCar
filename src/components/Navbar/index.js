@@ -1,6 +1,8 @@
 
 
 import React from "react";
+import {useEffect, useState} from 'react';
+
 import {
   Nav,
   NavbarContainer,
@@ -18,15 +20,17 @@ import {
 import { FaBars } from "react-icons/fa";
 
 const Navbar = ({ toggle }) => {
+  
+
   return (
     <div>
-      <Nav className="mr-auto my-1 my-lg-2">
+      <Nav className="navbar navbar-fixed-top navbar-dark bg-dark">
         <NavbarContainer>
-          <Navlogo to="/">TAZOTACAR</Navlogo>
+          <Navlogo className="navbar-brand" to="/">TAZOTACAR</Navlogo>
           <MobileIcon onClick={toggle}>
             <FaBars />
           </MobileIcon>
-          <NavMenu>
+          <NavMenu classeName="navbar-nav mr-auto">
             <NavItems>
               <NavLinks to="about">About</NavLinks>
             </NavItems>
@@ -45,8 +49,11 @@ const Navbar = ({ toggle }) => {
           </NavBtn>
         </NavbarContainer>
       </Nav>
+      
     </div>
+    
   );
 };
+
 
 export default Navbar;

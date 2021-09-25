@@ -3,17 +3,24 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { setSearchCar } from 'redux/Cars/carsActions';
 import { Col, Container, Row } from 'react-bootstrap';
 import { allCarsSelector, searchCarSelector } from 'redux/Cars/carsSelectors';
+import styled from "styled-components";
+import dacia from '../images/dacia.jpeg'
 
+const Input = styled.input`
+border-radius: 45px;
+font-size: 1rem;
+font-weight: 200;
+width: 190%;
+margin-left: -43%;
+`
 function SearchCar() {
   const { searchCar } = useSelector((state) => state?.cars);
   const dispatch = useDispatch();
 
-  // console.log('searchCar', searchCar);
-
   return (
-    <div>
-      <form>
-        <input
+    <div className="form-container mt-3 d-flex justify-content-center">
+      <form> 
+        <Input
           value={searchCar}
           placeholder="search cars..."
           onChange={(event) => {
@@ -29,17 +36,20 @@ function AllCars() {
   const allCars = useSelector(allCarsSelector, shallowEqual);
   return (
     <Container fluid={false}>
-      <Row>
+      <Row className="justify-content-center">
         {allCars?.map((car) => (
           <Col
             key={car.id}
             md={4}
             className={
-              'd-flex flex-column m-2 p-4 text-white bg-info rounded-3'
+              'd-flex flex-column m-2 p-4 text-white bg-info rounded-3 '
             }
           >
+            <div className="img-fluid">
+             <img  src={car?.img}/>
+            </div>
             <div>{car?.name}</div>
-            <div className={'text-danger'}>{car?.price} MAD</div>
+            <div className="text-danger">{car?.price} MAD</div>
           </Col>
         ))}
       </Row>
@@ -76,7 +86,6 @@ function Cars() {
       </section>
       <hr />
       <section>
-        <h1>All cars</h1>
         <AllCars />
       </section>
     </main>
