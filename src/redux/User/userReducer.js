@@ -1,44 +1,61 @@
-
-import {LOGIN_SUCCESS, LOGIN_REQUEST, LOGIN_FAILURE} from './userTypesActions';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_REQUEST,
+  LOGIN_FAILURE,
+  LOGIN_REDIRECT,
+  LOGOUT_REQUEST,
+} from './userTypesActions';
+import { APP_LOGIN_TOKEN, APP_LOGIN_USER } from 'common/utils/constants';
 
 const initialState = {
-    loading: false,
-    login: false,
-    user: {},
-    token: localStorage.getItem('CarRentalsToken'),
-    username: '' || localStorage.getItem('CarRentalsUser'),
-    error: '',
-  };
-  
-  const userReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case LOGIN_REQUEST:
-        return {
-          ...state,
-          loading: true,
-        };
-      case LOGIN_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          login: true,
-          user: action.payload,
-          token: localStorage.setItem('CarRentalsToken', action.payload.token),
-          username: localStorage.setItem('CarRentalsUser', action.payload.username),
-          error: '',
-        };
-      case LOGIN_FAILURE:
-        return {
-          ...state,
-          loading: false,
-          login: false,
-          user: {},
-          error: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
-  
-  export default userReducer;
-  
+  loading: false,
+  loggedIn: localStorage?.getItem(APP_LOGIN_TOKEN) !== '',
+  user: '',
+  token: localStorage.getItem(APP_LOGIN_TOKEN),
+  username: localStorage.getItem(APP_LOGIN_USER) || '',
+  error: '',
+  redirectTo: '',
+};
+
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOGOUT_REQUEST:
+      return {
+        ...state,
+        loggedIn: false,
+        token: '',
+        username: '',
+      };
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: true,
+        token: action.payload.token,
+        username: action.payload.username,
+        error: '',
+      };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loggedIn: false,
+        user: '',
+        error: action.payload,
+      };
+    case LOGIN_REDIRECT:
+      return {
+        ...state,
+        redirectTo: '/services',
+      };
+    default:
+      return state;
+  }
+};
+
+export default userReducer;

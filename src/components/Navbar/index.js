@@ -1,32 +1,31 @@
-
-
-import React from "react";
-import {useEffect, useState} from 'react';
+import React from 'react';
 
 import {
+  MobileIcon,
   Nav,
   NavbarContainer,
-  Navlogo,
-  MobileIcon,
-  NavMenu,
+  NavBtn,
+  NavBtnLink,
   NavItems,
   NavLinks,
-  NavBtn,
-  NavBtnLink
-} from "./NavbarElements";
+  Navlogo,
+  NavMenu,
+} from './NavbarElements';
 
-
-
-import { FaBars } from "react-icons/fa";
+import { FaBars } from 'react-icons/fa';
+import { shallowEqual, useSelector } from 'react-redux';
+import { isLoggedSelector } from 'redux/User/userSelectors';
 
 const Navbar = ({ toggle }) => {
-  
+  const isLoggedIn = useSelector(isLoggedSelector, shallowEqual);
 
   return (
     <div>
       <Nav className="navbar navbar-fixed-top navbar-dark bg-dark">
         <NavbarContainer>
-          <Navlogo className="navbar-brand" to="/">TAZOTACAR</Navlogo>
+          <Navlogo className="navbar-brand" to="/">
+            TAZOTACAR
+          </Navlogo>
           <MobileIcon onClick={toggle}>
             <FaBars />
           </MobileIcon>
@@ -35,25 +34,29 @@ const Navbar = ({ toggle }) => {
               <NavLinks to="about">About</NavLinks>
             </NavItems>
             <NavItems>
-               <NavLinks to="services">Services</NavLinks>
+              <NavLinks to="services">Services</NavLinks>
             </NavItems>
             <NavItems>
               <NavLinks to="discover">Discover</NavLinks>
             </NavItems>
             <NavItems>
-              <NavLinks to="signup">Sign Up</NavLinks>
+              <NavLinks to="users">Users</NavLinks>
             </NavItems>
-          </NavMenu> 
+            {!isLoggedIn && (
+              <NavItems>
+                <NavLinks to="signup">Sign Up</NavLinks>
+              </NavItems>
+            )}
+          </NavMenu>
           <NavBtn>
-            <NavBtnLink to="/signin">Sign In</NavBtnLink>
+            <NavBtnLink to={isLoggedIn ? '/logout' : '/signin'}>
+              {isLoggedIn ? 'Logout' : 'Sign In'}
+            </NavBtnLink>
           </NavBtn>
         </NavbarContainer>
       </Nav>
-      
     </div>
-    
   );
 };
-
 
 export default Navbar;

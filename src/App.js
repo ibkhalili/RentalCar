@@ -1,7 +1,6 @@
-import React from 'react';
-import {useState} from 'react';
-import signin from './pages/Signin';
-import signup from './pages/SignUp';
+import React, { useState } from 'react';
+import Login from './pages/Signin';
+import Signup from './pages/SignUp';
 import Home from './pages/Home';
 import Cars from './pages/Cars';
 import Store from './redux/store.js';
@@ -10,28 +9,30 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Navbar from './components/Navbar';
 import Footer from 'components/Footer/Footer';
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/Sidebar';
+import { Logout } from 'pages/Logout';
+
 //import Footer from 'components/Footer/socialIcons';
 
 function App() {
-
-const [isOpen, setIsOpen] = useState(false);
-const toggle = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
     setIsOpen(!isOpen);
-};
+  };
 
   return (
     <Provider store={Store}>
       <Router>
-      <Sidebar isOpen={isOpen} toggle={toggle}/>
-      <Navbar toggle={toggle} />
+        <Sidebar isOpen={isOpen} toggle={toggle} />
+        <Navbar toggle={toggle} />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/signin" component={signin} />
-          <Route exact path="/signup" component={signup} />
+          <Route exact path="/signin" component={Login} />
+          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/signup" component={Signup} />
           <Route exact path="/services" component={Cars} />
         </Switch>
-        <Footer/>
+        <Footer />
       </Router>
     </Provider>
   );

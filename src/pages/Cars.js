@@ -3,23 +3,22 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { setSearchCar } from 'redux/Cars/carsActions';
 import { Col, Container, Row } from 'react-bootstrap';
 import { allCarsSelector, searchCarSelector } from 'redux/Cars/carsSelectors';
-import styled from "styled-components";
-import dacia from '../images/dacia.jpeg'
+import styled from 'styled-components';
 
 const Input = styled.input`
-border-radius: 45px;
-font-size: 1rem;
-font-weight: 200;
-width: 190%;
-margin-left: -43%;
-`
+  border-radius: 45px;
+  font-size: 1rem;
+  font-weight: 200;
+  width: 190%;
+  margin-left: -43%;
+`;
 function SearchCar() {
   const { searchCar } = useSelector((state) => state?.cars);
   const dispatch = useDispatch();
 
   return (
     <div className="form-container mt-3 d-flex justify-content-center">
-      <form> 
+      <form>
         <Input
           value={searchCar}
           placeholder="search cars..."
@@ -46,7 +45,7 @@ function AllCars() {
             }
           >
             <div className="img-fluid">
-             <img  src={car?.img}/>
+              <img alt={'some-car'} src={car?.img} />
             </div>
             <div>{car?.name}</div>
             <div className="text-danger">{car?.price} MAD</div>
