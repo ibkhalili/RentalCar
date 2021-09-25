@@ -39,9 +39,11 @@ const Navbar = ({ toggle }) => {
             <NavItems>
               <NavLinks to="discover">Discover</NavLinks>
             </NavItems>
-            <NavItems>
-              <NavLinks to="users">Users</NavLinks>
-            </NavItems>
+            {isLoggedIn && (
+              <NavItems>
+                <NavLinks to="users">Users</NavLinks>
+              </NavItems>
+            )}
             {!isLoggedIn && (
               <NavItems>
                 <NavLinks to="signup">Sign Up</NavLinks>
@@ -49,7 +51,7 @@ const Navbar = ({ toggle }) => {
             )}
           </NavMenu>
           <NavBtn>
-            <NavBtnLink to={isLoggedIn ? '/logout' : '/signin'}>
+            <NavBtnLink to={isLoggedIn ? 'logout' : 'signin'}>
               {isLoggedIn ? 'Logout' : 'Sign In'}
             </NavBtnLink>
           </NavBtn>
