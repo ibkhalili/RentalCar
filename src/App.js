@@ -4,14 +4,13 @@ import Signup from './pages/SignUp';
 import Home from './pages/Home';
 import Cars from './pages/Cars';
 import Store from './redux/store.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Navbar from './components/Navbar';
 import Footer from 'components/Footer/Footer';
 import Sidebar from './components/Sidebar';
 import { Logout } from 'pages/Logout';
-import { Users } from 'pages/Users';
+import { AdminPage } from 'pages/Administration/AdminPage';
 
 //import Footer from 'components/Footer/socialIcons';
 
@@ -32,7 +31,7 @@ function App() {
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/services" component={Cars} />
-          <Route exact path="/users" component={Users} />
+          <Route exact path="/admin" component={AdminPage} />
         </Switch>
         <Footer />
       </Router>

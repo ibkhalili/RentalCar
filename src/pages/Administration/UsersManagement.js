@@ -10,7 +10,7 @@ import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 
-export const Users = () => {
+export const UsersManagement = () => {
   const dispatch = useDispatch();
 
   const [isLoading, users] = useSelector((s) => [
@@ -24,7 +24,7 @@ export const Users = () => {
 
   return (
     <BlockUi blocking={isLoading}>
-      <Container className={'py-5'}>
+      <Container>
         <Row>
           {users?.map((user) => (
             <Col key={user?.uuid} md={4} sm={6}>

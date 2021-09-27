@@ -41,7 +41,7 @@ const Navbar = ({ toggle }) => {
             </NavItems>
             {isLoggedIn && (
               <NavItems>
-                <NavLinks to="users">Users</NavLinks>
+                <NavLinks to="admin">Administration</NavLinks>
               </NavItems>
             )}
             {!isLoggedIn && (
