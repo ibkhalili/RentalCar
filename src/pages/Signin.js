@@ -56,37 +56,6 @@ function Login() {
         {submitted ? (
           <div className="success-message">Thank u for registring</div>
         ) : null}
-        {/*<Form.Group className="mb-3" controlId="formBasicUsername">*/}
-        {/*  <Form.Label>Username</Form.Label>*/}
-        {/*  <Form.Control*/}
-        {/*    onChange={handelUsernameChange}*/}
-        {/*    name="username"*/}
-        {/*    type="text"*/}
-        {/*    placeholder="Enter your login"*/}
-        {/*  />*/}
-        {/*  /!*<Form.Text className="text-muted">*!/*/}
-        {/*  /!*  We'll never share your email with anyone else.*!/*/}
-        {/*  /!*</Form.Text>*!/*/}
-        {/*</Form.Group>*/}
-
-        {/*<Form.Group className="mb-3" controlId="formBasicPassword">*/}
-        {/*  <Form.Label>Password</Form.Label>*/}
-        {/*  <Form.Control*/}
-        {/*    onChange={handelPasswordChange}*/}
-        {/*    type="password"*/}
-        {/*    placeholder="Password"*/}
-        {/*  />*/}
-        {/*</Form.Group>*/}
-        {/*<Form.Group className="mb-3" controlId="formBasicCheckbox">*/}
-        {/*  <Form.Check*/}
-        {/*    name={'rememberMe'}*/}
-        {/*    type="checkbox"*/}
-        {/*    label="Check me out"*/}
-        {/*  />*/}
-        {/*</Form.Group>*/}
-        {/*<Button variant="primary" type="submit">*/}
-        {/*  Submit*/}
-        {/*</Button>*/}
         <Input
           type="text"
           onChange={handelUsernameChange}
@@ -106,9 +75,12 @@ function Login() {
           value={values.password}
         />
         <br></br>
-        <Button className="btn btn-success text-center w-50" type="submit">
+        <div className="justify-content-center">
+
+        <Button className="btn btn-success text-center w-50" style={{  top: '50%'}} type="submit">
           Sign in
         </Button>
+        </div>
       </Form>
     </div>
   );

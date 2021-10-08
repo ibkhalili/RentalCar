@@ -18,7 +18,7 @@ z-index: 999;
 transition: 0.3s all ease-in-out;
 opacity: ${({ isOpen }) => (isOpen ? '100%' : '0')};
 top: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
-  // top: 0;
+   top: 0;
 `;
 
 export const CloseIcon = styled(FaTimes)`
@@ -52,7 +52,7 @@ export const SidebarMenu = styled.ul`
   }
 `;
 
-export const SidebarLinks = styled(LinkScroll)`
+export const SidebarLinks = styled(LinkRouter)`
 color: #fff; 
 display: flex;
 text-decoration: none;

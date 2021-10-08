@@ -3,7 +3,7 @@ import { UsersManagement } from 'pages/Administration/UsersManagement';
 import { Col, Container, Nav, Row, Tab } from 'react-bootstrap';
 import { CarsManagement } from 'pages/Administration/cars-management/CarsManagement';
 
-export const AdminPage = () => {
+export const  AdminPage = () => {
   return (
     <Container className={'py-5'}>
       <Tab.Container defaultActiveKey="USERS">

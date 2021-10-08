@@ -4,16 +4,16 @@ import { Link as LinkRouter } from 'react-router-dom';
 export const Nav = styled.nav`
   padding: 0 0.5rem;
   background: #000;
-  position: sticky;
   height: 70px;
   display: flex;
   justify-content: right;
   align-items: center;
   font-size: 1.1rem;
-  position: sticky-top;
-  top: 0;
   z-index: 10;
-  @media screnn and (max-width: 960px) {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  @media screnn and (max-width: 60px) {
     transition: 0.8s all ease;
   }
  
@@ -42,7 +42,7 @@ export const Navlogo = styled(LinkRouter)`
 export const MobileIcon = styled.div`
   display: none;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
     display: block;
     position: absolute;
     top: 0px;
@@ -87,9 +87,9 @@ export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
 
-  // @media screen and (max-width: 768px) {
-  //   display: none;
-  // }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavBtnLink = styled(LinkRouter)`

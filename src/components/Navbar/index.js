@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import {
@@ -11,6 +12,7 @@ import {
   Navlogo,
   NavMenu,
 } from './NavbarElements';
+
 
 import { FaBars } from 'react-icons/fa';
 import { shallowEqual, useSelector } from 'react-redux';
@@ -41,7 +43,7 @@ const Navbar = ({ toggle }) => {
             </NavItems>
             {isLoggedIn && (
               <NavItems>
-                <NavLinks to="admin">Administration</NavLinks>
+                <NavLinks to="admin">Administra tion</NavLinks>
               </NavItems>
             )}
             {!isLoggedIn && (
