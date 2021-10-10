@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import {
@@ -12,7 +11,6 @@ import {
   Navlogo,
   NavMenu,
 } from './NavbarElements';
-
 
 import { FaBars } from 'react-icons/fa';
 import { shallowEqual, useSelector } from 'react-redux';
@@ -33,27 +31,27 @@ const Navbar = ({ toggle }) => {
           </MobileIcon>
           <NavMenu classeName="navbar-nav mr-auto">
             <NavItems>
-              <NavLinks to="about">About</NavLinks>
+              <NavLinks to="/about">About</NavLinks>
             </NavItems>
             <NavItems>
-              <NavLinks to="services">Services</NavLinks>
+              <NavLinks to="/services">Services</NavLinks>
             </NavItems>
             <NavItems>
-              <NavLinks to="discover">Discover</NavLinks>
+              <NavLinks to="/discover">Discover</NavLinks>
             </NavItems>
             {isLoggedIn && (
               <NavItems>
-                <NavLinks to="admin">Administra tion</NavLinks>
+                <NavLinks to="/admin">Administration</NavLinks>
               </NavItems>
             )}
             {!isLoggedIn && (
               <NavItems>
-                <NavLinks to="signup">Sign Up</NavLinks>
+                <NavLinks to="/signup">Sign Up</NavLinks>
               </NavItems>
             )}
           </NavMenu>
           <NavBtn>
-            <NavBtnLink to={isLoggedIn ? 'logout' : 'signin'}>
+            <NavBtnLink to={isLoggedIn ? '/logout' : '/signin'}>
               {isLoggedIn ? 'Logout' : 'Sign In'}
             </NavBtnLink>
           </NavBtn>

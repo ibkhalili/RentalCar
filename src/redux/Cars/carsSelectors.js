@@ -7,6 +7,11 @@ export const allCarsSelector = createSelector(
   (cars) => cars?.allCars,
 );
 
+export const carsIsLoadingSelector = createSelector(
+  carsSelector,
+  (cars) => cars?.isLoading,
+);
+
 export const searchCarSelector = createSelector(
   carsSelector,
   (cars) => cars?.searchCar,

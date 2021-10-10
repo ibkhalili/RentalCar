@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import 'index.css';
+import { useForm } from 'react-hook-form';
 
 const Input = styled.input`
   border-radius: 45px;
@@ -10,7 +11,7 @@ const Input = styled.input`
   width: 60%;
   margin-left: 20%;
 `;
-const Btn = styled.nav`
+const Btn = styled.button`
   border-radius: 45px;
   margin-left: 20%;
 `;
@@ -21,21 +22,15 @@ const Brg = styled.p`
   margin-right: 20%;
 `;
 
-function FormElement({
-  type,
-  handleSubmit,
-  username,
-  password,
-  FirstName,
-  LastName,
-  Email,
-}) {
+function FormElement({ type, onSubmit }) {
   // useEffect(() => {
   //   username.current.focus();
   // }, []);
 
+  const { register, handleSubmit } = useForm();
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h3>Sign Up</h3>
       <br></br>
       <div className="form-group">
@@ -43,7 +38,7 @@ function FormElement({
           type="text"
           className="form-control"
           placeholder="First name"
-          value={FirstName}
+          {...register('firstName')}
         />
       </div>
       <br></br>
@@ -52,7 +47,7 @@ function FormElement({
           type="text"
           className="form-control"
           placeholder="Last name"
-          value={LastName}
+          {...register('lastName')}
         />
       </div>
       <br></br>
@@ -61,7 +56,7 @@ function FormElement({
           type="text"
           className="form-control"
           placeholder="username"
-          ref={username}
+          {...register('login')}
         />
       </div>
       <br></br>
@@ -70,7 +65,7 @@ function FormElement({
           type="email"
           className="form-control"
           placeholder="email adresse"
-          value={Email}
+          {...register('email')}
         />
       </div>
       <br></br>
@@ -79,7 +74,7 @@ function FormElement({
           type="password"
           className="form-control"
           placeholder="password"
-          ref={password}
+          {...register('password')}
         />
       </div>
       <br></br>
@@ -95,9 +90,9 @@ function FormElement({
 
 FormElement.propTypes = {
   type: PropTypes.string.isRequired,
-  username: PropTypes.instanceOf(Object).isRequired,
-  password: PropTypes.instanceOf(Object).isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  // username: PropTypes.instanceOf(Object).isRequired,
+  // password: PropTypes.instanceOf(Object).isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default FormElement;

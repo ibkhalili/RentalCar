@@ -17,6 +17,7 @@ export const UsersManagement = () => {
     adminIsLoadingSelector(s),
     getUsersSelector(s),
   ]);
+  // const isLoading = useSelector(getUsersSelector);
 
   useEffect(() => {
     dispatch(getUsersAction());

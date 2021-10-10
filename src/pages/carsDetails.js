@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, shallowEqual, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -6,27 +6,48 @@ import RentForm from '../components/RentForm';
 // import CarEditForm from './CarEditForm';
 import '../Css/carsDetails.css';
 import { allCarsSelector } from 'redux/Cars/carsSelectors';
+import axios from 'axios';
+import { APP_LOGIN_TOKEN } from 'common/utils/constants';
 // import { mapCarsToProps } from '../helpers';
 // // import { addRent, editCar, removeCar } from '../actions/index';
 // import { apiAddRent, apiRemoveCar, apiEditCar } from '../axios';
 
-function CarDetails () {
-    const { id } = useParams();
+function CarDetails() {
+  const { id } = useParams();
   const [formStatus, setFormStatus] = useState(false);
   const [editFormStatus, setEditFormStatus] = useState(false);
 
+  // const cars = useSelector(allCarsSelector, shallowEqual);
+  // const car = cars.filter(car => car.id === parseInt(id, 10))[0];
+  const [car, setCar] = useState({});
 
-  const cars = useSelector(allCarsSelector, shallowEqual);
-  const car = cars.filter(car => car.id === parseInt(id, 10))[0];
-  const models = cars.map(car => car.model);
-  const uniqModels = models.filter(
-    (item, index) => models.indexOf(item) === index,
-  );
+  useEffect(() => {
+    (async function () {
+      await axios
+        .get(`/cars/${id}`, {
+          headers: {
+            Authorization: `Bearer ${
+              localStorage?.getItem(APP_LOGIN_TOKEN) || ''
+            }`,
+          },
+        })
+        .then((response) => {
+          const { data } = response;
+          setCar(data);
+        })
+        .catch((err) => console.error('error: ', err));
+    })();
+  }, []);
+
+  // const models = cars.map(car => car.model);
+  // const uniqModels = models.filter(
+  //   (item, index) => models.indexOf(item) === index,
+  // );
   const info = {
     //userName: session.user.userName,
     model: car.model,
   };
-//   const userId = session.user.id;
+  //   const userId = session.user.id;
   const handleRentClick = () => {
     setFormStatus(!formStatus);
   };
@@ -34,7 +55,7 @@ function CarDetails () {
     setEditFormStatus(!editFormStatus);
   };
 
-  const handleEditCar = data => {
+  const handleEditCar = (data) => {
     const car = { ...data, carImg: data.carImg[0] };
     const formData = new FormData();
     formData.append('model', car.model);
@@ -51,7 +72,7 @@ function CarDetails () {
     formData.append('carImg', car.carImg);
     // apiEditCar(id, formData, editCar);
   };
-  const handleAddRent = data => {
+  const handleAddRent = (data) => {
     const rent = {
       ...data,
       pricePerDay: car.pricePerDay,
@@ -60,7 +81,7 @@ function CarDetails () {
     // apiAddRent(rent, userId, addRent);
   };
 
-  const handleRemoveCar = id => {
+  const handleRemoveCar = (id) => {
     //  apiRemoveCar(id, removeCar);
   };
 
@@ -113,17 +134,16 @@ function CarDetails () {
           <br />
         </h5>
         <h6 className="text-muted" style={{ textAlign: 'right' }}>
-          {car.pricePerDay}
-          $/Day
+          {car.cost} MAD /Day
           <br />
         </h6>
         <div className="d-flex justify-content-between mt-2 ">
           <div className="d-flex align-items-center ml-5 col-7">
             <img
               className="w-100"
-              src={car.img}
+              src={car.images?.[0]}
               alt={car.name}
-              style={{ width: '30vw' , height: '40vw'}}
+              style={{ maxHeight: '500px' }}
             />
           </div>
           <div className="col-4" style={{ padding: 1 }}>
@@ -139,7 +159,7 @@ function CarDetails () {
                   <tbody>
                     <tr>
                       <td>COLOR</td>
-                      <td>{"blue"}</td>
+                      <td>{'blue'}</td>
                     </tr>
                     <tr>
                       <td>BODY STYLE</td>
@@ -177,10 +197,7 @@ function CarDetails () {
                     </tr>
                     <tr>
                       <td>RENT DEPOSIT</td>
-                      <td>
-                        {car.rentDeposit}
-                        $
-                      </td>
+                      <td>{car.rentDeposit}$</td>
                     </tr>
                   </tbody>
                 </table>
@@ -201,13 +218,13 @@ function CarDetails () {
           </Link>
         </div>
       </div>
-      <RentForm
-        formStatus={formStatus}
-        handleRentClick={handleRentClick}
-        handleAddRent={handleAddRent}
-        uniqModels={uniqModels}
-        info={info}
-      />
+      {/*<RentForm*/}
+      {/*  formStatus={formStatus}*/}
+      {/*  handleRentClick={handleRentClick}*/}
+      {/*  handleAddRent={handleAddRent}*/}
+      {/*  // uniqModels={uniqModels}*/}
+      {/*  info={info}*/}
+      {/*/>*/}
       {/* <CarEditForm
         editFormStatus={editFormStatus}
         handleEditCarClick={handleEditCarClick}
@@ -216,7 +233,7 @@ function CarDetails () {
       /> */}
     </>
   );
-};
+}
 
 CarDetails.propTypes = {
   session: PropTypes.shape({
@@ -253,4 +270,4 @@ CarDetails.propTypes = {
 // export default connect(mapCarsToProps, { addRent, editCar, removeCar })(
 //   CarDetails,
 // );
- export default CarDetails;
+export default CarDetails;

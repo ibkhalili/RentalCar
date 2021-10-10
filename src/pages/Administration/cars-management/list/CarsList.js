@@ -6,6 +6,7 @@ import { APP_LOGIN_TOKEN } from 'common/utils/constants';
 
 export const CarsList = ({ carCreated }) => {
   const [cars, setCars] = useState([]);
+
   useEffect(() => {
     // to reload when closing the modal (creating a card)
     if (!carCreated) {
@@ -21,7 +22,7 @@ export const CarsList = ({ carCreated }) => {
           .then(({ data }) => {
             setCars(data?.content);
           })
-          .catch((err) => console.log('returns error: ', err));
+          .catch((err) => console.error('returns error: ', err));
       })();
     }
   }, [carCreated]);

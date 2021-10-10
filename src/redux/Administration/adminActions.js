@@ -22,7 +22,7 @@ export const getUsersFailure = (error) => ({
 
 export const getUsersAction = () =>
   function (dispatch) {
-    dispatch(usersRequestAction());
+    dispatch(usersRequestAction()); // isLoading -> true
     axios
       .get('/users', {
         headers: {
@@ -33,9 +33,9 @@ export const getUsersAction = () =>
       })
       .then((response) => {
         const { data } = response;
-        dispatch(getUsersSuccess(data));
+        dispatch(getUsersSuccess(data)); // users -> data, isLoading -> false
       })
       .catch((error) => {
-        dispatch(getUsersFailure(error.response.data.error));
+        dispatch(getUsersFailure(error.response.data.error)); // isLoading ->
       });
   };

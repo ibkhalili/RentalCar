@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { setSearchCar } from 'redux/Cars/carsActions';
+import { getCarsAction, setSearchCar } from 'redux/Cars/carsActions';
 import { Col, Container, Row } from 'react-bootstrap';
-import { allCarsSelector, searchCarSelector } from 'redux/Cars/carsSelectors';
+import {
+  allCarsSelector,
+  carsIsLoadingSelector,
+  searchCarSelector,
+} from 'redux/Cars/carsSelectors';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
-
+import BlockUi from 'react-block-ui';
 
 const Input = styled.input`
   border-radius: 45px;
@@ -18,12 +22,11 @@ const Input = styled.input`
 `;
 
 const Img = styled.img`
-height: 100%;
-width: 100%;
-object-fit: contain;
-// max-width: 200px;
-// max-height: 100px;
-
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  // max-width: 200px;
+  // max-height: 100px;
 `;
 function SearchCar() {
   const { searchCar } = useSelector((state) => state?.cars);
@@ -44,26 +47,25 @@ function SearchCar() {
   );
 }
 
-
 export const CarCard = (props) => {
   const { car } = props;
   return (
     <div className="col-sm-5 col-md-4 col-lg-3 mt-2">
-      <div className="card" style={{height: "100%"}}>
-        <Img className="card-img-top" src={car.img} />
+      <div className="card" style={{ height: '100%' }}>
+        <Img className="card-img-top" src={car.images?.[0]} />
         <div className="card-body">
           <h4 className="card-title text-truncate py-1">{car.name}</h4>
           <div className=" card-text text-muted">
-            <h6 className="my-1">{`Prix  : ${car.price}$`}</h6>
-            <h7>{`Prix par jour  : ${car.pricePerDay}$`}</h7>
+            {/*<h6 className="my-1">{`Prix  : ${car.cost}$`}</h6>*/}
+            <h6>{`Prix par jour  : ${car.cost} MAD`}</h6>
           </div>
-        </div>     
+        </div>
         <div className="card-footer ">
           {car.name}
           <Link
-            to={`services/${car.id}`}
+            to={`services/${car.uuid}`}
             className="btn btn-success float-right btn-sm color-dark"
-           >
+          >
             voir plus
           </Link>
         </div>
@@ -73,21 +75,29 @@ export const CarCard = (props) => {
 };
 
 function AllCars() {
+  const dispatch = useDispatch();
+
   const allCars = useSelector(allCarsSelector, shallowEqual);
-  
+  const isLoading = useSelector(carsIsLoadingSelector, shallowEqual);
+
+  useEffect(() => {
+    dispatch(getCarsAction());
+  }, []);
 
   return (
-      <main className="container">
+    <main className="container">
       <div className="text-center mt-5">
         <h4 style={{ fontWeight: 'bold' }}>Les voitures disponibles </h4>
         <h6 className="text-muted">Choisi le model préféré ...</h6>
       </div>
-      <div className="row mx-3">
-            {allCars?.map(car => (
-              <CarCard key={car.id} car={car}/>
-            ))}
-          </div>
-      </main>
+      <BlockUi blocking={isLoading}>
+        <Row className="mx-3">
+          {allCars?.map((car) => (
+            <CarCard key={car.uuid} car={car} />
+          ))}
+        </Row>
+      </BlockUi>
+    </main>
   );
 }
 

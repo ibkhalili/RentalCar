@@ -1,4 +1,3 @@
-
 import {
   LOGIN_SUCCESS,
   LOGIN_REQUEST,
@@ -38,7 +37,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         loggedIn: true,
-        token: action.payload.token,
+        token: action.payload.id_token,
         username: action.payload.username,
         error: '',
       };

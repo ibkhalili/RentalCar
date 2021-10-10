@@ -25,7 +25,7 @@ export const CarsCrudModal = (props) => {
           Close
         </Button>
         <Button variant="primary" form={'addCarForm'} type={'submit'}>
-          Save ChangescarCcarCreatedreated
+          Save
         </Button>
       </Modal.Footer>
     </Modal>

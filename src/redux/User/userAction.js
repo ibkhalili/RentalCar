@@ -49,6 +49,6 @@ export const loginUser = (credentials) =>
         // window.location.href = '/services';
       })
       .catch((error) => {
-        dispatch(userLoginFailure(error.response.data.error));
+        dispatch(userLoginFailure(error?.response?.data?.error));
       });
   };

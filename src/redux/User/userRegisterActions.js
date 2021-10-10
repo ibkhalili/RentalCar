@@ -28,7 +28,7 @@ export const registerUser = (data) =>
       .then((response) => {
         const { data } = response;
         dispatch(userSignupSuccess(data));
-        window.location.href = '/cars';
+        window.location.href = '/signin';
       })
       .catch((error) => {
         dispatch(userSignupFailure(error.response.data.error));
