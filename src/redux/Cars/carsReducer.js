@@ -1,29 +1,48 @@
+import {
+  CLEAR_SEARCH_CAR,
+  GET_CARS_FAILURE,
+  GET_CARS_REQUEST,
+  GET_CARS_SUCCESS,
+  LOAD_DATA,
+  SET_SEARCH_CAR,
+} from './constants.js';
+
 const initialState = {
-  allCars: [
-    { name: 'dacia', price: 24540, id: 1 },
-    { name: 'renault', price: 54450, id: 2 },
-    { name: 'mercedes', price: 246540, id: 3 },
-  ],
+  allCars: [],
+  isLoading: false,
   searchCar: '',
 };
 
-export const SET_SEARCH_CAR = 'searchCar/setSearchCar';
-
 const CarsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'allCars/loadData':
+    case GET_CARS_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case GET_CARS_SUCCESS:
       return {
         ...state,
         allCars: action.payload,
+        isLoading: false,
       };
-    case 'searchCar/clearSearchCar':
+    case GET_CARS_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case SET_SEARCH_CAR:
+      return {
+        ...state,
+        searchCar: action.payload,
+      };
+    case CLEAR_SEARCH_CAR:
       return {
         ...state,
         searchCar: '',
       };
-
-    case SET_SEARCH_CAR:
-      return { ...state, searchCar: action.payload };
+    case LOAD_DATA:
+      return { ...state, allCars: action.payload };
     default:
       return state;
   }

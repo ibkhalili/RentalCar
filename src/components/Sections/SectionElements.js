@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { MdKeyboardArrowRight, MdArrowForward } from 'react-icons/md';
-import { Link as LinkRouter } from "react-router-dom";
+import styled from 'styled-components';
+import { MdArrowForward, MdKeyboardArrowRight } from 'react-icons/md';
+import { Link as LinkRouter } from 'react-router-dom';
 
 export const SectionsContainer = styled.div`
   background: #0c0c0c;
@@ -45,12 +45,12 @@ export const H1 = styled.div`
   font-size: 48px;
   text-align: center;
 
-  @media screen and (max-width: 768px) {
-    font-size: 40px;
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 32px;
-  }
+  // @media screen and (max-width: 768px) {
+  //   font-size: 40px;
+  // }
+  // @media screen and (max-width: 480px) {
+  //   font-size: 32px;
+  // }
 `;
 
 export const Prg1 = styled.div`

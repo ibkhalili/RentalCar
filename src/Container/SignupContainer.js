@@ -6,18 +6,9 @@ import FormElement from '../components/Form/FormElement';
 import { registerUser } from '../redux/User/userRegisterActions';
 
 function SignupContainer({ userData, signupUser }) {
-  const username = useRef();
-  const password = useRef();
+  const handleRegistration = (data) => {
+    console.log('submitted data: ', data);
 
-  const handleRegistration = (e) => {
-    e.preventDefault();
-
-    const data = {
-      user: {
-        username: username.current.value,
-        password: password.current.value,
-      },
-    };
     signupUser(data);
   };
 
@@ -33,12 +24,7 @@ function SignupContainer({ userData, signupUser }) {
   ) : (
     <div>
       <p className="text-danger">{error}</p>
-      <FormElement
-        username={username}
-        password={password}
-        type="Sign up"
-        handleSubmit={handleRegistration}
-      />
+      <FormElement type="Sign up" onSubmit={handleRegistration} />
     </div>
   );
 }

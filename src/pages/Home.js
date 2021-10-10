@@ -1,25 +1,16 @@
 
+import Sections from '../components/Sections/index';
+import Carousel  from '../components/Sections/carousel';
 
-import React, { useState } from 'react'
-import Navbar from '../components/Navbar'
-import Sections from '../components/Sections';
-import Sidebar from '../components/Sidebar'
-
-
-function Home() {
-
-const [isOpen, setIsOpen] = useState(false);
-const toggle = () => {
-    setIsOpen(!isOpen);
-};
-    return (
-        <div>
-          <Sidebar isOpen={isOpen} toggle={toggle}/>
-          <Navbar toggle={toggle}/>
-          <Sections/>
-        </div>
-    )
+export function Home() {
+  return (
+    <div>
+      <Sections />
+      <div className=" container text-center d-flex flex-column align-items-center justify-content-center my-5">
+    <h4 style={{ fontWeight: 'bold' }}>Les voitures disponibles</h4>
+    <h6 className="text-muted">choisi ton model préféré</h6>
+    </div>
+      <Carousel/>
+    </div>
+  );
 }
-
-export default Home;
-;

@@ -1,0 +1,26 @@
+
+  .footer {
+    background-color: #020000f8;
+
+  }
+
+  .footer .title {
+    color: rgb(250, 250, 183);
+    font-size: 20px;
+    font-weight: bold;
+    width: 66%;
+    margin-bottom: 10px;
+  }
+
+  .footer h6 {
+    display: block;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 2;
+  }
+  .footer .list-unstyled Link {
+    color: #d3d9dd;
+  }
+  .footer .list-unstyled Link:hover {
+    color: #1417cc;
+  }
